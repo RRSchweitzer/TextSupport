@@ -1,0 +1,9 @@
+<div>
+	<h4>Tickets</h4>
+</div>
+<div ng-repeat="item in items">{{item.$id}}
+	<div ng-repeat="(key, value) in item">
+		{{value.body}}
+	</div>
+</div>
+
