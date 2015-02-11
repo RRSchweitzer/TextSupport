@@ -1,9 +1,14 @@
-<div>
-	<h4>Tickets</h4>
-</div>
-<div ng-repeat="item in items">{{item.$id}}
-	<div ng-repeat="(key, value) in item">
-		{{value.body}}
+<div class="container">
+	<div>
+		<h4>Tickets</h4>
+		<input placeholder="input" ng-model="response">
+		<input placeholder="Phone #" ng-model="number">
+		<button ng-click="postResponse(response, number)">Send</button>
 	</div>
-</div>
+	<div ng-repeat="number in numbers"><b>From:</b> {{number.$id}}
+		<div ng-repeat="(text, message) in number">
+			{{message.body}} <br><div class="text-danger bg-info">{{message.date_created}}</div>
+		</div>
+	</div>
 
+</div>

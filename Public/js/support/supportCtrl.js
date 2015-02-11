@@ -1,14 +1,24 @@
 var app = angular.module('textSupport')
 
-app.controller('supportCtrl', function($scope, $firebase){
+app.controller('supportCtrl', function($scope, $firebase, supportService){
+
+	var numbers = supportService.getResponse();
+	var support = supportService.getSupportResponse();
 	
-	ref = new Firebase("https://textsupport2.firebaseio.com/numbers");
-	var sync = $firebase(ref);
-	var itemsArray = sync.$asArray(); //three way binding
-	$scope.items = itemsArray;
-
-	console.log(itemsArray)
+	$scope.numbers = numbers.$asArray();
+	$scope.support = support.$asArray();
 
 
 
+
+	$scope.postResponse = function(response, number){
+		console.log('clicked the button');
+		var messageObj = {
+			body: response,
+			number: number
+		}
+		supportService.postResponse(messageObj)
+		$scope.response = ""
+
+	}
 })
